@@ -9,7 +9,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     pwd = db.Column(db.String(300), nullable=False, unique=True)
-    posts = db.relationship('Post', cascade="all,delete", backref='user', lazy='dynamic')
+    posts = db.relationship('Post', cascade="all, delete-orphan", backref='user', lazy='dynamic')
 
     def __repr__(self):
         return '<User %r>' % self.username
