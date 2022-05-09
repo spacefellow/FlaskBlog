@@ -12,4 +12,6 @@
         <hr>
         <p> {{ post.text }}</p>
       </article>
+    <a href="/user_posts/{{ post.post_id }}/update" class="btn btn-sm btn-outline-secondary">Редактировать</a>
+    <a href="/user_posts/{{ post.post_id }}/delete" class="btn btn-sm btn-outline-secondary">Удалить</a>
 {% endblock %}
