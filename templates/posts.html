@@ -10,6 +10,7 @@
           <h1 class="mb-0">{{ post.title }}</h1>
           <div class="mb-1 text-muted">{{ post.date.date() }}</div>
           <p class="card-text mb-auto">{{ post.intro }}</p>
+          <p class="mb-1 text-muted">{{ post.user_name }}</p>
           <a href="/{{ post.post_id }}" class="btn btn-sm btn-outline-secondary">Continue</a>
         </div>
         <div class="col-auto d-none d-lg-block">

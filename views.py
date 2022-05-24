@@ -3,14 +3,19 @@ from config import *
 from models import Post, User
 from forms import LoginForm, RegisterForm
 from flask_login import login_required, logout_user, login_user, current_user
+from flask_admin.contrib.sqla import ModelView
 
 app = create_app()
+
+
+def add_admin():
+    admin.add_view(ModelView(Post, db.session))
+    admin.add_view(ModelView(User, db.session))
 
 
 @app.route('/', methods=("GET", "POST"))
 def all_posts():
     posts = Post.query.all()
-    print(posts)
     return render_template("posts.html", posts=posts)
 
 
@@ -71,8 +76,8 @@ def creat_post():
             title = request.form['title']
             intro = request.form['intro']
             text = request.form['text']
-            user_id = current_user.id
-            posts = Post(title=title, intro=intro, text=text, user_id=user_id)
+            user_name = current_user.username
+            posts = Post(title=title, intro=intro, text=text, user_name=user_name)
             db.session.add(posts)
             db.session.commit()
             return redirect(url_for('user_posts'))
