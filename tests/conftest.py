@@ -12,10 +12,10 @@ def app():
 
 
 @pytest.fixture()
-def client(app):
+def test_client(app):
     return app.test_client()
 
 
-@pytest.fixture()
-def runner(app):
-    return app.test_cli_runner()
+# @pytest.fixture()
+# def runner(app):
+#     return app.test_cli_runner()
