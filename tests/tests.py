@@ -1,10 +1,9 @@
-from views import app
+from fixtures import *
 
 
 class TestViews:
     def setup(self):
-        app.testing = True
-        self.client = app.test_client()
+        self.client = client
 
     def test_posts(self):
         response = self.client.get('/')
