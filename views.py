@@ -39,7 +39,7 @@ def user_post_detail(post_id):
     return render_template("user_post_detail.html", post=post)
 
 
-@app.route('/user_posts/<int:post_id>/delete', methods=["GET", "POST"])
+@app.route('/user_posts/<int:post_id>/delete', methods=["GET", "POST", "DELETE"])
 @login_required
 def delete_post(post_id):
     try:
