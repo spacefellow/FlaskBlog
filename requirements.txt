@@ -25,7 +25,6 @@ psycopg2==2.9.3
 py==1.11.0
 pyparsing==3.0.9
 pytest==7.1.2
-SQLAlchemy==1.4.23
 tomli==2.0.1
 Werkzeug==2.1.2
 WTForms==3.0.1

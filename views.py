@@ -13,33 +13,33 @@ def add_admin():
     admin.add_view(ModelView(User, db.session))
 
 
-@app.route('/', methods=("GET", "POST"))
+@app.route('/', methods=["GET", "POST"])
 def all_posts():
     posts = Post.query.all()
     return render_template("posts.html", posts=posts)
 
 
-@app.route('/user_posts', methods=("GET", "POST"))
+@app.route('/user_posts', methods=["GET", "POST"])
 @login_required
 def user_posts():
     user = User.query.filter_by(username=current_user.username).first()
     return render_template('user_posts.html', user=user, title='User')
 
 
-@app.route('/<int:post_id>', methods=("GET", "POST"))
+@app.route('/<int:post_id>', methods=["GET", "POST"])
 def post_detail(post_id):
     post = Post.query.get(post_id)
     return render_template("post_detail.html", post=post)
 
 
-@app.route('/user_posts/<int:post_id>', methods=("GET", "POST"))
+@app.route('/user_posts/<int:post_id>', methods=["GET", "POST"])
 @login_required
 def user_post_detail(post_id):
     post = Post.query.get(post_id)
     return render_template("user_post_detail.html", post=post)
 
 
-@app.route('/user_posts/<int:post_id>/delete', methods=("GET", "POST"))
+@app.route('/user_posts/<int:post_id>/delete', methods=["GET", "POST"])
 @login_required
 def delete_post(post_id):
     try:
@@ -51,7 +51,7 @@ def delete_post(post_id):
         return flash(ex, 'Невозможно удалить запись')
 
 
-@app.route('/user_posts/<int:post_id>/update', methods=("GET", "POST"))
+@app.route('/user_posts/<int:post_id>/update', methods=["GET", "POST"])
 @login_required
 def update_post(post_id):
     post = Post.query.get(post_id)
@@ -68,7 +68,7 @@ def update_post(post_id):
         return render_template("update_post.html", post=post)
 
 
-@app.route('/create_post', methods=("GET", "POST"))
+@app.route('/create_post', methods=["GET", "POST"])
 @login_required
 def creat_post():
     if request.method == "POST":
@@ -92,7 +92,7 @@ def load_user(user_id):
     return User.query.get(user_id)
 
 
-@app.route("/login", methods=("GET", "POST"))
+@app.route("/login", methods=["GET", "POST"])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
@@ -112,7 +112,7 @@ def login():
                            btn_action="Login")
 
 
-@app.route("/register", methods=("GET", "POST"))
+@app.route("/register", methods=["GET", "POST"])
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
