@@ -15,9 +15,9 @@ services:
     expose:
       - 5000
     depends_on:
-      - localhost
+      - host
 
-  localhost:
+  host:
     image: postgres:13
     container_name: db
     environment:
