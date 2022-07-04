@@ -6,7 +6,6 @@ from flask_login import LoginManager
 from os import getenv
 
 
-SQLALCHEMY_DATABASE_URL = getenv('DATABASE_URL', 'postgresql://postgres:123@db:5432/blog_db')
 db = SQLAlchemy()
 login_manager = LoginManager()
 migrate = Migrate()
