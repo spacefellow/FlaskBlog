@@ -4,32 +4,34 @@ version: '3'
 services:
 
   app:
-    build: ./app
+    build:
+      context: ./app
     container_name: flask
-    ports:
-      - "5000:5000"
-    env_file:
-      - .flaskenv
     command: gunicorn --bind 0.0.0.0:5000 run:app
-    depends_on:
-      - database
-
-  database:
-    image: postgres:13-alpine
-    container_name: postgres
-    ports:
-      - "5432:5432"
-    env_file:
-      - .dbenv
+    environment:
+      - DATABASE_URL=postgresql://postgres:123@localhost/blog_db
     volumes:
-      - ./pg_db:/var/lib/postgresql/data/
-    restart: always
+      - ./app:/app
+    expose:
+      - 5000
+    depends_on:
+      - localhost
+
+  localhost:
+    image: postgres:13
+    container_name: db
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=123
+      - POSTGRES_DB=blog_db
+    volumes:
+      - ./pg_db:/var/lib/postgresql
 
   nginx:
     build:
       context: ./nginx
     container_name: nginx
     ports:
-      - "8000:80"
+      - "80:80"
     depends_on:
       - app
