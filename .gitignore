@@ -1,5 +1,7 @@
-app/migrations
 __pycache__/
 .idea
 .pytest_cache
 pg_db
+.flaskenv
+.dbenv
+env
